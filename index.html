@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <h1>Pattern Creator</h1>
+        <div class="canvas-container">
+            <div class="controls">
+                <select id="datasetSelect">
+                    <option value="">Select Dataset</option>
+                </select>
+                <select id="patternSelect">
+                    <option value="">Select Pattern</option>
+                </select>
+                <select id="sizeSelect">
+                    <option value="4">4x4</option>
+                    <option value="5">5x5</option>
+                    <option value="6">6x6</option>
+                    <option value="7">7x7</option>
+                    <option value="8">8x8</option>
+                </select>
+                
+                <select id="difficultySelect">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+
+            <canvas id="patternCanvas"></canvas>
+
+            <div class="buttons">
+                <button id="resetBtn">Reset</button>
+                <button id="appendBtn">Append</button>
+                <button id="exportBtn">Export</button>
+                <button id="loadBtn">Load Dataset</button>
+                <button id="editBtn">Edit Pattern</button>
+                <button id="saveEditBtn" style="display: none;">Save Changes</button>
+                <button id="cancelEditBtn" style="display: none;">Cancel Edit</button>
+            </div>
+
+            <div class="statistics">
+                <h2>Pattern Statistics</h2>
+                <table id="statsTable">
+                    <thead>
+                        <tr>
+                            <th>Difficulty</th>
+                            <th>4x4</th>
+                            <th>5x5</th>
+                            <th>6x6</th>
+                            <th>7x7</th>
+                            <th>8x8</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Easy</td>
+                            <td class="count" data-difficulty="easy" data-size="4">0</td>
+                            <td class="count" data-difficulty="easy" data-size="5">0</td>
+                            <td class="count" data-difficulty="easy" data-size="6">0</td>
+                            <td class="count" data-difficulty="easy" data-size="7">0</td>
+                            <td class="count" data-difficulty="easy" data-size="8">0</td>
+                            <td class="total" data-difficulty="easy">0</td>
+                        </tr>
+                        <tr>
+                            <td>Medium</td>
+                            <td class="count" data-difficulty="medium" data-size="4">0</td>
+                            <td class="count" data-difficulty="medium" data-size="5">0</td>
+                            <td class="count" data-difficulty="medium" data-size="6">0</td>
+                            <td class="count" data-difficulty="medium" data-size="7">0</td>
+                            <td class="count" data-difficulty="medium" data-size="8">0</td>
+                            <td class="total" data-difficulty="medium">0</td>
+                        </tr>
+                        <tr>
+                            <td>Hard</td>
+                            <td class="count" data-difficulty="hard" data-size="4">0</td>
+                            <td class="count" data-difficulty="hard" data-size="5">0</td>
+                            <td class="count" data-difficulty="hard" data-size="6">0</td>
+                            <td class="count" data-difficulty="hard" data-size="7">0</td>
+                            <td class="count" data-difficulty="hard" data-size="8">0</td>
+                            <td class="total" data-difficulty="hard">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
