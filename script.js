@@ -367,35 +367,27 @@ function handleEditClick() {
 function handleSaveEdit() {
     if (!isEditMode || currentPatternIndex === -1) return;
 
-    const markedCells = Array.from(cells)
-        .map((cell, index) => {
-            if (cell.classList.contains('marked')) {
-                const row = Math.floor(index / currentSize);
-                const col = index % currentSize;
-                return [row, col];
-            }
-            return null;
-        })
-        .filter(cell => cell !== null);
+    // Get the current pattern from the dataset
+    const pattern = currentDataset.patterns[currentPatternIndex];
+    
+    // Update the pattern with the current cells
+    pattern.size = parseInt(sizeSelect.value);
+    pattern.difficulty = difficultySelect.value;
+    pattern.sequence = cells.map(cell => [cell.y, cell.x]);
 
-    // Update the pattern in the dataset
-    currentDataset.patterns[currentPatternIndex] = {
-        size: currentSize,
-        difficulty: currentDifficulty,
-        sequence: markedCells
-    };
-
-    // Update the dataset in localStorage
-    const datasets = JSON.parse(localStorage.getItem('patternDatasets') || '[]');
-    const datasetIndex = datasets.findIndex(d => d.name === currentDataset.name);
-    if (datasetIndex !== -1) {
-        datasets[datasetIndex] = currentDataset;
-        localStorage.setItem('patternDatasets', JSON.stringify(datasets));
-    }
+    // Update the dataset in savedDatasets
+    savedDatasets[currentDataset.name] = currentDataset.patterns;
 
     // Exit edit mode
     exitEditMode();
-    updateStatistics();
+    
+    // Update the pattern selector to reflect changes
+    updatePatternSelector();
+    
+    // Select the edited pattern
+    patternSelect.value = currentPatternIndex;
+    
+    alert('Changes saved successfully!');
 }
 
 function handleCancelEdit() {
